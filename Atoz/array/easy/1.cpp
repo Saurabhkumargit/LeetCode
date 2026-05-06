@@ -69,3 +69,22 @@ public:
         return {-1, -1};
     }
 };
+
+
+// Revision (4)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> mp;
+        int pair;
+        for (int i = 0; i< nums.size(); i++) {
+            pair = target - nums[i];
+            if (mp.find(pair) != mp.end()) {
+                return {i, mp[pair]};
+            } else {
+                mp[nums[i]] = i;
+            }
+        }
+        return {0,0};
+    }
+};

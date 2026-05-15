@@ -59,3 +59,27 @@ public:
         return cnt;
     }
 };
+
+
+// Revision (3)
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int, int> freq;
+        freq[0] = 1;
+        int prefixSum =0;
+        int cnt = 0;
+        
+        for (int i = 0; i < nums.size(); i++) {
+            prefixSum += nums[i];
+
+            int target = prefixSum - k;
+
+            if (freq.find(target) != freq.end()) {
+                cnt += freq[target];
+            }
+            freq[prefixSum]++;
+        }
+        return cnt;
+    }
+};

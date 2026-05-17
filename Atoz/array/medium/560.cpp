@@ -83,3 +83,25 @@ public:
         return cnt;
     }
 };
+
+
+// Revision (4)
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int, int> totalSum;
+        totalSum[0] = 1;
+        int cnt = 0;
+        int sum = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            sum += nums[i];
+            int target = sum - k;
+            if (totalSum.find(target) != totalSum.end()) {
+                cnt += totalSum[target];
+            } 
+            totalSum[sum]++;
+            
+        }
+        return cnt;
+    }
+};

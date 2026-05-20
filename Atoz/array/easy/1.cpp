@@ -106,3 +106,21 @@ public:
         return {};
     }
 };
+
+
+// Revision (6)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> sum;
+        for (int i = 0; i< nums.size(); i++) {
+            int pair = target - nums[i];
+            if (sum.find(pair) != sum.end()) {
+                return {sum[pair], i};
+            } else {
+                sum[nums[i]] = i;
+            }
+        }
+        return {-1, -1};
+    }
+};

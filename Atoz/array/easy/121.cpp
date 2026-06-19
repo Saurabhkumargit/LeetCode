@@ -94,3 +94,22 @@ public:
         return profit;
     }
 };
+
+
+// Revision(5)
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int sell = INT_MAX;
+        int maxProfit = 0;
+        
+        for (int i = 0; i < prices.size(); i++) {
+            sell = min(sell, prices[i]);
+
+            int profit = prices[i] - sell;
+
+            maxProfit = max(maxProfit, profit);
+        }
+        return maxProfit;
+    }
+};

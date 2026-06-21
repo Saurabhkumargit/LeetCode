@@ -54,3 +54,31 @@ public:
         return true;
     }
 };
+
+
+// Revision (2)
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int n = s.length();
+        int beg = 0;
+        int end = n-1;
+        while (beg < end) {
+           while (beg<end && !isalnum(s[beg])) {
+            beg++;
+           }
+
+           while (beg<end && !isalnum(s[end])) {
+            end--;
+           }
+
+           if (tolower(s[beg]) != tolower(s[end])) {
+            return false;
+           }
+
+           beg++;
+           end--;
+        }
+        return true;
+    }
+};

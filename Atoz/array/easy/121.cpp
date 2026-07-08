@@ -113,3 +113,25 @@ public:
         return maxProfit;
     }
 };
+
+
+// Revision(6)
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        int buy = 0;
+        int maxProfit = 0;
+
+        for (int i = 0; i < n; i++) {
+            int profit = prices[i] - prices[buy];
+
+            maxProfit = max(profit, maxProfit);
+
+            if (prices[buy] > prices[i]) {
+                buy = i;
+            }
+        }
+        return maxProfit;
+    }
+};

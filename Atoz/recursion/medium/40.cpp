@@ -32,3 +32,40 @@ public:
         }
     }
 };
+
+
+// Revision (1)
+class Solution {
+public:
+    vector<vector<int>> ans;
+    vector<int> current;
+    int sum = 0;
+
+    void backtrack(vector<int>& candidates, int target, int sum, int pos) {
+        if (sum == target) {
+            ans.push_back(current);
+            return;
+        }
+
+        for (int i = pos; i < candidates.size(); i++) {
+            if (i > pos && candidates[i] == candidates[i - 1])
+                continue;
+
+            if (sum + candidates[i] > target)
+                break;
+
+            current.push_back(candidates[i]);
+
+            backtrack(candidates, target, sum + candidates[i], i + 1);
+
+            current.pop_back();
+        }
+    }
+
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+
+        backtrack(candidates, target, sum, 0);
+        return ans;
+    }
+};

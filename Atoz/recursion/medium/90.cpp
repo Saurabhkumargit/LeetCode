@@ -28,3 +28,28 @@ public:
         }
     }
 };
+
+
+// Revision (1)
+class Solution {
+public:
+    void subarray(vector<int>& nums, int k,vector<vector<int>>& ans, vector<int>& current) {
+        ans.push_back(current);
+        for (int i = k; i < nums.size(); i++) {
+            if (i != k && nums[i] == nums[i-1]) {
+                continue;
+            }
+            current.push_back(nums[i]);
+            subarray(nums, i+1, ans, current);
+            current.pop_back();
+        }
+    }
+
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> current;
+        sort(nums.begin(), nums.end());
+        subarray(nums, 0, ans, current);
+        return ans;
+    }
+};
